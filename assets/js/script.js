@@ -20,6 +20,13 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
+    //This let's user press enter to send answer as well as clicking submit answer
+    document.getElementById('answer-box').addEventListener('keydown', function(event){
+        if (event.key === 'Enter'){
+            checkAnswer();
+        }
+    })
+
     //this will start default game of addition when page loads
     runGame('addition');
 })
@@ -32,6 +39,12 @@ document.addEventListener("DOMContentLoaded", function() {
 //run game funciton
 //#2
 function runGame(gameType){
+    //#8
+    //this empties answer box after each turn by putting in an empty string
+    document.getElementById('answer-box').value = "";
+    //makes sure cursor is in the answer box so user doesn't have to click onload & each time new game starts
+    document.getElementById('answer-box').focus();
+
     //create 2 random numbers between 1 - 25
     let num1 = Math.floor(Math.random() * 25) + 1;
     let num2 = Math.floor(Math.random() * 25) + 1;
@@ -42,7 +55,7 @@ function runGame(gameType){
     }else if (gameType === 'multiply'){
         displayMultiplyQuestion(num1, num2);
     }else if(gameType === "subtract"){
-        displaySubtractQuestion(num1, num2)
+        displaySubtractQuestion(num1, num2);
     }
     
     else{
@@ -131,7 +144,7 @@ function displayAdditionQuestion(operand1, operand2){
     document.getElementById('operand2').textContent = operand2;
     document.getElementById('operator').textContent = "+";
 }
-
+//#8
 function displaySubtractQuestion(operand1, operand2){
     //Ternary operator reference. This works just like an if statement. Before question mark is the conditional and right hand side is the return values
     //condition ? true part : false part;
