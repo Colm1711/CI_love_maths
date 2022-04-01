@@ -52,13 +52,16 @@ function runGame(gameType){
     //checking game type is equal to addition. With exception hanfdling. 'throw' will stop game and displays to console for debugging 
     if (gameType === "addition"){
         displayAdditionQuestion(num1, num2);
-    }else if (gameType === 'multiply'){
+    }
+    else if (gameType === 'multiply'){
         displayMultiplyQuestion(num1, num2);
-    }else if(gameType === "subtract"){
+    }
+    else if(gameType === "subtract"){
         displaySubtractQuestion(num1, num2);
     }
-    
-    else{
+    else if(gameType === "division"){
+        displayDivisonQuestion((num1 * num2), num2);
+    }else{
         alert(`Unknown game type: ${gameType}`);
         throw `Unknown game type: ${gameType}. Aborting!`;
     }
@@ -108,6 +111,9 @@ function calculateCorrectAnswer(){
     }
     else if(operator === "-"){
         return [operand1 - operand2, 'subtract']
+    }
+    else if(operator === "/"){
+        return [operand1 / operand2, 'division']
     }
     else{
         alert(`Unimmplemented operator ${operator}`);
@@ -160,3 +166,9 @@ function displayMultiplyQuestion(operand1, operand2){
     document.getElementById('operator').textContent = "x";
 }
 
+//#Challenge
+function displayDivisonQuestion(operand1, operand2){
+    document.getElementById('operand1').textContent = operand1;
+    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operator').textContent = "/";
+}
